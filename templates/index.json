@@ -1,0 +1,171 @@
+{
+  "sections": {
+    "main": {
+      "type": "homepage",
+      "settings": {
+        "logo_primary": "amazon",
+        "logo_secondary": "seller",
+        "pricing_nav_label": "Pricing",
+        "how_it_works_nav_label": "How it works",
+        "resources_nav_label": "Resources",
+        "contact_nav_label": "Contact",
+        "header_menu": "main-menu",
+        "hero_image": "",
+        "hero_image_alt": "Entrepreneur packaging products",
+        "hero_eyebrow": "Build your brand with Amazon",
+        "hero_heading": "Start selling where customers are already shopping",
+        "hero_body": "Launch your business on the store trusted by millions of customers worldwide. Access powerful tools, reach new shoppers, and grow your brand with Amazon.",
+        "hero_primary_label": "Start selling",
+        "hero_primary_link": "#start-selling",
+        "hero_secondary_label": "Learn how it works",
+        "hero_secondary_link": "#how-it-works",
+        "hero_disclaimer": "Plans start at $39.99 a month + selling fees.",
+        "hero_stat_value": "60%",
+        "hero_stat_caption": "of sales on Amazon come from independent sellers",
+        "feature_heading": "Your launchpad for ecommerce success",
+        "feature_subheading": "Empower your business with a suite of tools designed to help you start, manage, and scale on Amazon.",
+        "steps_heading": "How selling on Amazon works",
+        "testimonial_quote": "\u201cWe launched our brand on Amazon and reached customers we never thought possible. The tools made it easy to scale quickly.\u201d",
+        "testimonial_cite": "\u2014 Maya, Founder of River & Co.",
+        "pricing_heading": "Flexible pricing that grows with you",
+        "pricing_body": "Subscribe to the Professional selling plan for $39.99 per month plus selling fees. Additional programs like FBA, advertising, and brand services are available when you need them.",
+        "pricing_button_label": "See plan details",
+        "pricing_button_link": "#start",
+        "cta_heading": "Ready to build your business?",
+        "cta_body": "Join thousands of entrepreneurs growing with Amazon every day. Sign up in minutes and start selling today.",
+        "cta_button_label": "Start selling",
+        "cta_button_link": "#",
+        "footer_legal": "\u00a9 2024 Amazon Services LLC. All rights reserved."
+      },
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "title": "List with ease",
+            "body": "Get step-by-step guidance to create product listings, set pricing, and manage inventory from one dashboard."
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "title": "Reach more customers",
+            "body": "Tap into Amazon's global customer base and deliver prime-worthy experiences with fast, reliable fulfillment options."
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "settings": {
+            "title": "Grow with insights",
+            "body": "Use built-in analytics to understand trends, optimize ads, and make smarter business decisions."
+          }
+        },
+        "feature-4": {
+          "type": "feature",
+          "settings": {
+            "title": "Protect your brand",
+            "body": "Access tools that help you register your brand, safeguard listings, and build trust with shoppers."
+          }
+        },
+        "step-1": {
+          "type": "step",
+          "settings": {
+            "title": "Create your account",
+            "body": "Tell us about your business, choose a selling plan, and verify your identity to get started."
+          }
+        },
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "title": "List your products",
+            "body": "Add products individually or in bulk and showcase what makes your brand unique."
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "title": "Deliver delight",
+            "body": "Ship orders yourself or let Fulfillment by Amazon handle storage, packing, and shipping for you."
+          }
+        },
+        "step-4": {
+          "type": "step",
+          "settings": {
+            "title": "Grow your business",
+            "body": "Advertise, offer deals, and expand globally with programs built for brands of every size."
+          }
+        },
+        "resource-1": {
+          "type": "resource",
+          "settings": {
+            "title": "Explore seller resources",
+            "body": "Learn from successful entrepreneurs, discover best practices, and unlock insights from Amazon experts.",
+            "button_label": "Browse the library",
+            "button_link": "#"
+          }
+        },
+        "resource-2": {
+          "type": "resource",
+          "settings": {
+            "title": "Watch on-demand webinars",
+            "body": "Dive deep into selling strategies, growth tactics, and product updates through engaging sessions.",
+            "button_label": "See upcoming events",
+            "button_link": "#"
+          }
+        },
+        "resource-3": {
+          "type": "resource",
+          "settings": {
+            "title": "Connect with support",
+            "body": "Get personalized help from specialists, community forums, and round-the-clock seller assistance.",
+            "button_label": "Contact us",
+            "button_link": "#"
+          }
+        },
+        "benefit-1": {
+          "type": "benefit",
+          "settings": {
+            "text": "Pay-as-you-go fulfillment options"
+          }
+        },
+        "benefit-2": {
+          "type": "benefit",
+          "settings": {
+            "text": "Access to Amazon Advertising"
+          }
+        },
+        "benefit-3": {
+          "type": "benefit",
+          "settings": {
+            "text": "Powerful brand analytics"
+          }
+        },
+        "benefit-4": {
+          "type": "benefit",
+          "settings": {
+            "text": "24/7 seller support"
+          }
+        }
+      },
+      "block_order": [
+        "feature-1",
+        "feature-2",
+        "feature-3",
+        "feature-4",
+        "step-1",
+        "step-2",
+        "step-3",
+        "step-4",
+        "resource-1",
+        "resource-2",
+        "resource-3",
+        "benefit-1",
+        "benefit-2",
+        "benefit-3",
+        "benefit-4"
+      ]
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
