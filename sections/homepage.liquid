@@ -1,0 +1,586 @@
+<section class="landing">
+  <header class="top-bar">
+    <div class="container">
+      <a class="logo" href="{{ routes.root_url }}">
+        <span class="logo-mark">{{ section.settings.logo_primary | default: 'amazon' }}</span>
+        <span class="logo-seller">{{ section.settings.logo_secondary | default: 'seller' }}</span>
+      </a>
+      <nav class="utility-nav">
+        {% if section.settings.header_menu != blank and linklists[section.settings.header_menu] != nil and linklists[section.settings.header_menu].links.size > 0 %}
+          {% for link in linklists[section.settings.header_menu].links %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {% endfor %}
+        {% else %}
+          <a href="#pricing">{{ section.settings.pricing_nav_label }}</a>
+          <a href="#how-it-works">{{ section.settings.how_it_works_nav_label }}</a>
+          <a href="#resources">{{ section.settings.resources_nav_label }}</a>
+          <a href="#contact" class="cta-link">{{ section.settings.contact_nav_label }}</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-copy">
+          {% if section.settings.hero_eyebrow != blank %}
+            <span class="eyebrow">{{ section.settings.hero_eyebrow }}</span>
+          {% endif %}
+          <h1>{{ section.settings.hero_heading }}</h1>
+          {% if section.settings.hero_body != blank %}
+            <p>{{ section.settings.hero_body }}</p>
+          {% endif %}
+          <div class="cta-group">
+            {% if section.settings.hero_primary_label != blank %}
+              <a class="button primary" href="{{ section.settings.hero_primary_link | default: '#start-selling' }}">{{ section.settings.hero_primary_label }}</a>
+            {% endif %}
+            {% if section.settings.hero_secondary_label != blank %}
+              <a class="button secondary" href="{{ section.settings.hero_secondary_link | default: '#learn-more' }}">{{ section.settings.hero_secondary_label }}</a>
+            {% endif %}
+          </div>
+          {% if section.settings.hero_disclaimer != blank %}
+            <p class="disclaimer">{{ section.settings.hero_disclaimer }}</p>
+          {% endif %}
+        </div>
+        <div class="hero-media">
+          <div class="device-frame">
+            {% if section.settings.hero_image != blank %}
+              {% assign hero_alt = section.settings.hero_image_alt | default: section.settings.hero_heading | escape %}
+              {{ section.settings.hero_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: hero_alt }}
+            {% else %}
+              <img src="https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=600&q=80" alt="{{ section.settings.hero_image_alt | default: 'Entrepreneur packaging products' }}">
+            {% endif %}
+          </div>
+          <div class="stat-card">
+            {% if section.settings.hero_stat_value != blank %}
+              <strong>{{ section.settings.hero_stat_value }}</strong>
+            {% endif %}
+            {% if section.settings.hero_stat_caption != blank %}
+              <span>{{ section.settings.hero_stat_caption }}</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% assign feature_blocks = section.blocks | where: 'type', 'feature' %}
+    {% if feature_blocks.size > 0 %}
+      <section id="start-selling" class="feature-grid">
+        <div class="container">
+          <header>
+            <h2>{{ section.settings.feature_heading }}</h2>
+            {% if section.settings.feature_subheading != blank %}
+              <p>{{ section.settings.feature_subheading }}</p>
+            {% endif %}
+          </header>
+          <div class="grid">
+            {% for block in feature_blocks %}
+              <article {{ block.shopify_attributes }}>
+                <h3>{{ block.settings.title }}</h3>
+                {% if block.settings.body != blank %}
+                  <p>{{ block.settings.body }}</p>
+                {% endif %}
+              </article>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+
+    {% assign step_blocks = section.blocks | where: 'type', 'step' %}
+    {% if section.settings.steps_heading != blank or step_blocks.size > 0 %}
+      <section id="how-it-works" class="steps">
+        <div class="container">
+          {% if section.settings.steps_heading != blank %}
+            <h2>{{ section.settings.steps_heading }}</h2>
+          {% endif %}
+          {% if step_blocks.size > 0 %}
+            <ol>
+              {% for block in step_blocks %}
+                <li {{ block.shopify_attributes }}>
+                  <span class="step-title">{{ block.settings.title }}</span>
+                  {% if block.settings.body != blank %}
+                    <p>{{ block.settings.body }}</p>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ol>
+          {% endif %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% assign resource_blocks = section.blocks | where: 'type', 'resource' %}
+    {% if resource_blocks.size > 0 %}
+      <section id="resources" class="resources">
+        <div class="container">
+          {% for block in resource_blocks %}
+            <div class="resource-card" {{ block.shopify_attributes }}>
+              <h3>{{ block.settings.title }}</h3>
+              {% if block.settings.body != blank %}
+                <p>{{ block.settings.body }}</p>
+              {% endif %}
+              {% if block.settings.button_label != blank %}
+                <a class="button tertiary" href="{{ block.settings.button_link | default: '#' }}">{{ block.settings.button_label }}</a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if section.settings.testimonial_quote != blank %}
+      <section class="testimonial">
+        <div class="container">
+          <blockquote>{{ section.settings.testimonial_quote }}</blockquote>
+          {% if section.settings.testimonial_cite != blank %}
+            <cite>{{ section.settings.testimonial_cite }}</cite>
+          {% endif %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% assign benefit_blocks = section.blocks | where: 'type', 'benefit' %}
+    {% if section.settings.pricing_heading != blank or section.settings.pricing_body != blank or benefit_blocks.size > 0 %}
+      <section id="pricing" class="pricing">
+        <div class="container">
+          <div class="pricing-card">
+            {% if section.settings.pricing_heading != blank %}
+              <h2>{{ section.settings.pricing_heading }}</h2>
+            {% endif %}
+            {% if section.settings.pricing_body != blank %}
+              <p>{{ section.settings.pricing_body }}</p>
+            {% endif %}
+            {% if section.settings.pricing_button_label != blank %}
+              <a class="button primary" href="{{ section.settings.pricing_button_link | default: '#start' }}">{{ section.settings.pricing_button_label }}</a>
+            {% endif %}
+            {% if benefit_blocks.size > 0 %}
+              <ul class="benefits">
+                {% for block in benefit_blocks %}
+                  <li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+
+    {% if section.settings.cta_heading != blank or section.settings.cta_body != blank %}
+      <section id="contact" class="cta-banner">
+        <div class="container">
+          <div class="cta-content">
+            {% if section.settings.cta_heading != blank %}
+              <h2>{{ section.settings.cta_heading }}</h2>
+            {% endif %}
+            {% if section.settings.cta_body != blank %}
+              <p>{{ section.settings.cta_body }}</p>
+            {% endif %}
+          </div>
+          {% if section.settings.cta_button_label != blank %}
+            <a class="button primary" href="{{ section.settings.cta_button_link | default: '#' }}">{{ section.settings.cta_button_label }}</a>
+          {% endif %}
+        </div>
+      </section>
+    {% endif %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-brand">
+        <span class="logo-mark">{{ section.settings.logo_primary | default: 'amazon' }}</span>
+        <span class="logo-seller">{{ section.settings.logo_secondary | default: 'seller' }}</span>
+      </div>
+      <nav class="footer-links">
+        <a href="#pricing">{{ section.settings.pricing_nav_label }}</a>
+        <a href="#how-it-works">{{ section.settings.how_it_works_nav_label }}</a>
+        <a href="#resources">{{ section.settings.resources_nav_label }}</a>
+        <a href="#contact">{{ section.settings.contact_nav_label }}</a>
+      </nav>
+      {% if section.settings.footer_legal != blank %}
+        <p class="legal">{{ section.settings.footer_legal }}</p>
+      {% endif %}
+    </div>
+  </footer>
+</section>
+
+{% schema %}
+{
+  "name": "Landing page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_primary",
+      "label": "Primary logo text",
+      "default": "amazon"
+    },
+    {
+      "type": "text",
+      "id": "logo_secondary",
+      "label": "Secondary logo text",
+      "default": "seller"
+    },
+    {
+      "type": "text",
+      "id": "pricing_nav_label",
+      "label": "Pricing navigation label",
+      "default": "Pricing"
+    },
+    {
+      "type": "text",
+      "id": "how_it_works_nav_label",
+      "label": "How it works navigation label",
+      "default": "How it works"
+    },
+    {
+      "type": "text",
+      "id": "resources_nav_label",
+      "label": "Resources navigation label",
+      "default": "Resources"
+    },
+    {
+      "type": "text",
+      "id": "contact_nav_label",
+      "label": "Contact navigation label",
+      "default": "Contact"
+    },
+    {
+      "type": "link_list",
+      "id": "header_menu",
+      "label": "Header menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "hero_image_alt",
+      "label": "Hero image alt text",
+      "default": "Entrepreneur packaging products"
+    },
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Hero eyebrow",
+      "default": "Build your brand with Amazon"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero heading",
+      "default": "Start selling where customers are already shopping"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_body",
+      "label": "Hero body",
+      "default": "Launch your business on the store trusted by millions of customers worldwide. Access powerful tools, reach new shoppers, and grow your brand with Amazon."
+    },
+    {
+      "type": "text",
+      "id": "hero_primary_label",
+      "label": "Hero primary button label",
+      "default": "Start selling"
+    },
+    {
+      "type": "url",
+      "id": "hero_primary_link",
+      "label": "Hero primary button link",
+      "default": "#start-selling"
+    },
+    {
+      "type": "text",
+      "id": "hero_secondary_label",
+      "label": "Hero secondary button label",
+      "default": "Learn how it works"
+    },
+    {
+      "type": "url",
+      "id": "hero_secondary_link",
+      "label": "Hero secondary button link",
+      "default": "#how-it-works"
+    },
+    {
+      "type": "text",
+      "id": "hero_disclaimer",
+      "label": "Hero disclaimer",
+      "default": "Plans start at $39.99 a month + selling fees."
+    },
+    {
+      "type": "text",
+      "id": "hero_stat_value",
+      "label": "Hero statistic value",
+      "default": "60%"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_stat_caption",
+      "label": "Hero statistic caption",
+      "default": "of sales on Amazon come from independent sellers"
+    },
+    {
+      "type": "text",
+      "id": "feature_heading",
+      "label": "Features heading",
+      "default": "Your launchpad for ecommerce success"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_subheading",
+      "label": "Features subheading",
+      "default": "Empower your business with a suite of tools designed to help you start, manage, and scale on Amazon."
+    },
+    {
+      "type": "text",
+      "id": "steps_heading",
+      "label": "Steps heading",
+      "default": "How selling on Amazon works"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_quote",
+      "label": "Testimonial quote",
+      "default": "\u201cWe launched our brand on Amazon and reached customers we never thought possible. The tools made it easy to scale quickly.\u201d"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_cite",
+      "label": "Testimonial cite",
+      "default": "\u2014 Maya, Founder of River & Co."
+    },
+    {
+      "type": "text",
+      "id": "pricing_heading",
+      "label": "Pricing heading",
+      "default": "Flexible pricing that grows with you"
+    },
+    {
+      "type": "textarea",
+      "id": "pricing_body",
+      "label": "Pricing body",
+      "default": "Subscribe to the Professional selling plan for $39.99 per month plus selling fees. Additional programs like FBA, advertising, and brand services are available when you need them."
+    },
+    {
+      "type": "text",
+      "id": "pricing_button_label",
+      "label": "Pricing button label",
+      "default": "See plan details"
+    },
+    {
+      "type": "url",
+      "id": "pricing_button_link",
+      "label": "Pricing button link",
+      "default": "#start"
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA heading",
+      "default": "Ready to build your business?"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_body",
+      "label": "CTA body",
+      "default": "Join thousands of entrepreneurs growing with Amazon every day. Sign up in minutes and start selling today."
+    },
+    {
+      "type": "text",
+      "id": "cta_button_label",
+      "label": "CTA button label",
+      "default": "Start selling"
+    },
+    {
+      "type": "url",
+      "id": "cta_button_link",
+      "label": "CTA button link",
+      "default": "#"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_legal",
+      "label": "Footer legal text",
+      "default": "\u00a9 2024 Amazon Services LLC. All rights reserved."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "List with ease"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "default": "Get step-by-step guidance to create product listings, set pricing, and manage inventory from one dashboard."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Create your account"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "default": "Tell us about your business, choose a selling plan, and verify your identity to get started."
+        }
+      ]
+    },
+    {
+      "type": "resource",
+      "name": "Resource",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Explore seller resources"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "default": "Learn from successful entrepreneurs, discover best practices, and unlock insights from Amazon experts."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Browse the library"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link",
+          "default": "#"
+        }
+      ]
+    },
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Benefit text",
+          "default": "Pay-as-you-go fulfillment options"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Amazon seller landing",
+      "blocks": [
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Reach more customers",
+            "body": "Tap into Amazon's global customer base and deliver prime-worthy experiences with fast, reliable fulfillment options."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Grow with insights",
+            "body": "Use built-in analytics to understand trends, optimize ads, and make smarter business decisions."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Protect your brand",
+            "body": "Access tools that help you register your brand, safeguard listings, and build trust with shoppers."
+          }
+        },
+        {
+          "type": "step"
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "List your products",
+            "body": "Add products individually or in bulk and showcase what makes your brand unique."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Deliver delight",
+            "body": "Ship orders yourself or let Fulfillment by Amazon handle storage, packing, and shipping for you."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Grow your business",
+            "body": "Advertise, offer deals, and expand globally with programs built for brands of every size."
+          }
+        },
+        {
+          "type": "resource"
+        },
+        {
+          "type": "resource",
+          "settings": {
+            "title": "Watch on-demand webinars",
+            "body": "Dive deep into selling strategies, growth tactics, and product updates through engaging sessions.",
+            "button_label": "See upcoming events"
+          }
+        },
+        {
+          "type": "resource",
+          "settings": {
+            "title": "Connect with support",
+            "body": "Get personalized help from specialists, community forums, and round-the-clock seller assistance.",
+            "button_label": "Contact us"
+          }
+        },
+        {
+          "type": "benefit"
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "text": "Access to Amazon Advertising"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "text": "Powerful brand analytics"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "text": "24/7 seller support"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
